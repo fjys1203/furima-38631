@@ -28,8 +28,9 @@ first_name_kana    |string|null: false              |
 |category_id       |integer   |null: false      |
 |condition_id      |integer   |null: false      |
 |shopping_charge_id|integer   |null: false      |
-|region_id         |integer   |null: false      |
+|prefecture_id     |integer   |null: false      |
 |days_for_send_id  |integer   |null: false      |
+|price             |integer   |null: false      |
 |user              |references|foreign_key: true|
 
 ### Association
@@ -57,7 +58,7 @@ first_name_kana    |string|null: false              |
 |--------------|----------|-----------------|
 |address       |string    |null: false      |
 |postcode      |string    |null: false      |
-|prefecture    |string    |null: false      |
+|prefecture_id |integer   |null: false      |
 |city          |string    |null: false      |
 |block         |string    |null: false      |
 |building      |string    |                 |
