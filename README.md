@@ -4,10 +4,12 @@
 
 |Column            |Type  |Options                  |
 |------------------|------|-------------------------|
-|name              |string|null: false              |
+|last_name         |string|null: false              |
+|first_name        |string|null: false              |
+|last_name_kana    |string|null: false              |
+first_name_kana    |string|null: false              |
 |nickname          |string|null: false              |
 |email             |string|null: false, unique: true|
-|password          |string|null: false              |
 |encrypted_password|string|null: false              |
 |birthday          |date  |null: false              |
 
@@ -19,16 +21,16 @@
 
 ##items テーブル
 
-|Column            |Type   |Options     |
-|------------------|-------|------------|
-|item_name         |string |null: false | 
-|item_text         |text   |null: false |
-|category          |string |null: false |
-|condition         |string |null: false |
-|price             |integer|null: false |
-|shopping_charge   |string |null: false |
-|region            |string |null: false |
-|days_for_send     |integer|null: false |
+|Column            |Type      |Options          |
+|------------------|----------|-----------------|
+|item_name         |string    |null: false      | 
+|item_text         |text      |null: false      |
+|category_id       |integer   |null: false      |
+|condition_id      |integer   |null: false      |
+|shopping_charge_id|integer   |null: false      |
+|region_id         |integer   |null: false      |
+|days_for_send_id  |integer   |null: false      |
+|user              |references|foreign_key: true|
 
 ### Association
 
@@ -51,17 +53,17 @@
 
 ##buyers テーブル
 
-|Column        |Type   |Options    |
-|--------------|-------|-----------|
-|address       |string |null: false|
-|postcode      |integer|null: false|
-|prefecture    |string |null: false|
-|municipalities|string |null: false|
-|house_number  |integer|null: false|
-|house_name    |string |null: false|
-|phone_number  |integer|null: false|
+|Column        |Type      |Options          |
+|--------------|----------|-----------------|
+|address       |string    |null: false      |
+|postcode      |string    |null: false      |
+|prefecture    |string    |null: false      |
+|city          |string    |null: false      |
+|block         |string    |null: false      |
+|building      |string    |                 |
+|phone_number  |string    |null: false      |
+|record        |references|foreign_key: true|
 
 ### Association
 
-- belongs_to :item
 - belongs_to :record
