@@ -1,24 +1,67 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##users テーブル
 
-Things you may want to cover:
+|Column            |Type  |Options                  |
+|------------------|------|-------------------------|
+|name              |string|null: false              |
+|nickname          |string|null: false              |
+|email             |string|null: false, unique: true|
+|password          |string|null: false              |
+|encrypted_password|string|null: false              |
+|birthday          |date  |null: false              |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items
+- has_many :records
 
-* Configuration
 
-* Database creation
+##items テーブル
 
-* Database initialization
+|Column            |Type   |Options     |
+|------------------|-------|------------|
+|item_name         |string |null: false | 
+|item_text         |text   |null: false |
+|category          |string |null: false |
+|condition         |string |null: false |
+|price             |integer|null: false |
+|shopping_charge   |string |null: false |
+|region            |string |null: false |
+|days_for_send     |integer|null: false |
 
-* How to run the test suite
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to :user
+- has_one :record
 
-* Deployment instructions
+##records テーブル
 
-* ...
+|Column|Type      |Options                        |
+|------|----------|-------------------------------|
+|user  |references|null: false, foreign_key: true |
+|item  |references|null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :buyer
+
+
+##buyers テーブル
+
+|Column        |Type   |Options    |
+|--------------|-------|-----------|
+|address       |string |null: false|
+|postcode      |integer|null: false|
+|prefecture    |string |null: false|
+|municipalities|string |null: false|
+|house_number  |integer|null: false|
+|house_name    |string |null: false|
+|phone_number  |integer|null: false|
+
+### Association
+
+- belongs_to :item
+- belongs_to :record
