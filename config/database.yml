@@ -5,18 +5,18 @@ default: &default
 development:
   <<: *default
   adapter: mysql2
-  username: root
-  password:
+  username: admin
+  password: 2222
   host: localhost
-  database: ajax_app_development
+  database: furima-38631_development
 
 test:
   <<: *default
   adapter: mysql2
-  username: root
-  password:
+  username: admin
+  password: 2222
   host: localhost
-  database: ajax_app_test
+  database: furima-38631_test
 
 production:
   <<: *default
