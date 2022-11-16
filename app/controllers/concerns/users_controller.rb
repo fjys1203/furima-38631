@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
 
+  def index
+    user = User.find(params[:id])
+    @email = user.email
+    @password = user.password
+  end
+
   def new
     @user = Use.new
     @user.save
@@ -8,6 +14,12 @@ class UsersController < ApplicationController
   def create
     @user = User.create(user_params)
     @user.save
+  end
+
+  def show
+    user = User.find(params[:id])
+    @email = user.email
+    @password = user.password
   end
 
   def destroy
