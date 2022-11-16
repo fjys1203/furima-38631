@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
       another_user = FactoryBot.build(:user)
       another_user.email = @user.email
       another_user.valid?
-      expect(another_user.errors.full_messages).to include("Password can't be blank")
+      expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
     it "emailに@が含まれていないと登録できない" do
       @user.email = 'testmail'
@@ -36,7 +36,7 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include('Email is invalid')
     end
     it "passwordがないと登録できない" do
-      @user.encrypted_password = ''
+      @user.password = ''
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
