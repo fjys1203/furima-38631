@@ -5,16 +5,16 @@ default: &default
 development:
   <<: *default
   adapter: mysql2
-  username: <%= ENV["BASIC_AUTH_USER"] %>
-  password: <%= ENV["BASIC_AUTH_PASSWORD"] %>
+  username: "admin"
+  password: "2222"
   host: localhost
   database: furima_38631_development
 
 test:
   <<: *default
   adapter: mysql2
-  username: <%= ENV["BASIC_AUTH_USER"] %>
-  password: <%= ENV["BASIC_AUTH_PASSWORD"] %>
+  username: "admin"
+  password: "2222"
   host: localhost
   database: furima_38631_test
 
