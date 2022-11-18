@@ -9,6 +9,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one :record
+  has_one_attached :image
 
   
   validates :item_name, presence: true
@@ -19,5 +20,4 @@ class Item < ApplicationRecord
   validates :prefecture_id, numericality: { other_than: 1 }
   validates :days_for_send_id, numericality: { other_than: 1 }
   validates :price, presence: true
-  validates :user, foreign_key: true
 end
