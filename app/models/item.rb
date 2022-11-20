@@ -8,16 +8,18 @@ class Item < ApplicationRecord
 
 
   belongs_to :user
-  has_one :record
+  ##has_one :record
   has_one_attached :image
 
   
+  validates :user, presence: true
+  validates :image, presence: true
   validates :item_name, presence: true
   validates :item_text, presence: true
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :shopping_charge_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :days_for_send_id, numericality: { other_than: 1 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :category_id, numericality: { other_than: 0 }
+  validates :condition_id, numericality: { other_than: 0 }
+  validates :shopping_charge_id, numericality: { other_than: 0 }
+  validates :prefecture_id, numericality: { other_than: 0 }
+  validates :days_for_send_id, numericality: { other_than: 0 }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
 end
