@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :item do
-    nickname              {'test'}
-    last_name             {'あああ'}
-    first_name            {'あああ'}
-    last_name_kana        {'アアア'}
-    first_name_kana       {'アアア'}
-    email                 {Faker::Internet.free_email}
-    password              {'1a' + Faker::Internet.password(min_length: 6)}
-    password_confirmation {password}
-    birthday              {'1990-01-01'}
+    item_name          {"test"}
+    item_text          {Faker::Lorem.sentence}
+    category_id           { 2 }
+    condition_id          { 2 }
+    shopping_charge_id    { 2 }
+    prefecture_id         { 2 }
+    days_for_send_id      { 2 }
+    price              { "1000" }
+
   end
 end
