@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   validates :shopping_charge_id, numericality: { other_than: 0 }
   validates :prefecture_id, numericality: { other_than: 0 }
   validates :days_for_send_id, numericality: { other_than: 0 }
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }, format: { with: /\A[0-9]+\z/ }
 end
