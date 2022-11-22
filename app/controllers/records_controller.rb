@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :non_purchased_item, only: [:index, :create]
 
   def index
     @record = Record.new
@@ -9,7 +11,7 @@ class RecordsController < ApplicationController
     if @record.save
       return redirect_to root_path
     else 
-      render 'index'
+      render index
     end
   end
 
@@ -17,7 +19,12 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:price)
+    params.require(:record).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def non_purchased_item
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.record.present?
   end
 
 end
