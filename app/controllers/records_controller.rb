@@ -8,7 +8,9 @@ class RecordsController < ApplicationController
 
   def create
     @record = Record.new(record_params)
-    if @record.save
+    if @order.valid?
+      pay_item
+      @record.save
       return redirect_to root_path
     else 
       render index
@@ -25,6 +27,15 @@ class RecordsController < ApplicationController
   def non_purchased_item
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id || @item.record.present?
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        amount: record_params[:price], 
+        card: record_params[:token],   
+        currency: 'jpy'            
+      )
   end
 
 end
