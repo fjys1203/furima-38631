@@ -70,28 +70,6 @@ ActiveRecord::Schema.define(version: 2022_11_26_082455) do
     t.index ["order_id"], name: "index_payments_on_order_id"
   end
 
-  create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "item_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_records_on_item_id"
-    t.index ["user_id"], name: "index_records_on_user_id"
-  end
-
-  create_table "sends", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "postcode", null: false
-    t.integer "prefecture_id", null: false
-    t.string "city", null: false
-    t.string "block", null: false
-    t.string "building"
-    t.string "phone_number", null: false
-    t.bigint "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["record_id"], name: "index_sends_on_record_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -115,7 +93,4 @@ ActiveRecord::Schema.define(version: 2022_11_26_082455) do
   add_foreign_key "orders", "items"
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
-  add_foreign_key "records", "items"
-  add_foreign_key "records", "users"
-  add_foreign_key "sends", "records"
 end

@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Order, type: :model do
+RSpec.describe OrderForm, type: :model do
 before do
-  @order = FactoryBot.build(:order)
+  @order = FactoryBot.build(:order_form)
 end
 
 describe '配送先情報の保存' do
@@ -26,17 +26,17 @@ describe '配送先情報の保存' do
     it '郵便番号が空だと保存できないこと' do
       @order.postcode = nil
       @order.valid?
-      expect(@order.errors.full_messages).to include("Postcode can't be blank", 'Postcode is invalid. Include hyphen(-)')
+      expect(@order.errors.full_messages).to include("Postcode can't be blank", "Postcode is invalid")
     end
     it '郵便番号にハイフンがないと保存できないこと' do
       @order.postcode = 1_234_567
       @order.valid?
-      expect(@order.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
+      expect(@order.errors.full_messages).to include("Postcode is invalid")
     end
     it '都道府県が「---」だと保存できないこと' do
       @order.prefecture_id = 0
       @order.valid?
-      expect(@order.errors.full_messages).to include("Prefecture can't be blank")
+      expect(@order.errors.full_messages).to include("Prefecture must be other than 0")
     end
     it '都道府県が空だと保存できないこと' do
       @order.prefecture_id = nil
