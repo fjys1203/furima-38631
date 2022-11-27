@@ -34,9 +34,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    unless @item.order.nil?
-      redirect_to root_path
-    end
   end
 
   def destroy
