@@ -42,9 +42,9 @@ describe '配送先情報の保存' do
       expect(@order.errors.full_messages).to include("Postcode is invalid")
     end
     it '都道府県が「---」だと保存できないこと' do
-      @order.prefecture_id = 0
+      @order.prefecture_id = 1
       @order.valid?
-      expect(@order.errors.full_messages).to include("Prefecture must be other than 0")
+      expect(@order.errors.full_messages).to include("Prefecture must be other than 1")
     end
     it '都道府県が空だと保存できないこと' do
       @order.prefecture_id = nil
