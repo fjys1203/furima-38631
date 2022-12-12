@@ -22,3 +22,10 @@ production:
   <<: *default
   adapter: postgresql
   url: <%= ENV['DATABASE_URL'] %>
+
+amazon:
+ service: S3
+ region: ap-northeast-1
+ bucket: furima38631
+ access_key_id: <%= ENV['AWS_ACCESS_KEY_ID'] %>
+ secret_access_key:  <%= ENV['AWS_SECRET_ACCESS_KEY'] %>
